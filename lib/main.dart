@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'Pages/login.dart';
 
 void main() {
-  runApp(noteapp());
+  runApp(Noteapp());
 }
- class noteapp extends StatelessWidget {
+ class Noteapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
