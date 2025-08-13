@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'Pages/login.dart';
 
 void main() {
   runApp(noteapp());
 }
-class noteapp extends StatelessWidget {
+ class noteapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Note App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Note App Home'),
-        ),
-        body: Center(
-          child: Text('Welcome to the Note App!'),
-        ),
-      ),
+     routes: {
+        '/': (context) => LoginPage(),
+      },
+      initialRoute: '/',
     );
   }
-}
+ }
