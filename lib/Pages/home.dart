@@ -6,13 +6,16 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children:[
-          Text("Home Page",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue.shade700,
+          AppBar(
+            title: Text("Home Page"),
+            backgroundColor: Colors.blue,
+          ),
+          SizedBox(height: 20),
+          Center(
+            child: Text(
+              "Welcome to the Note App!",
+              style: TextStyle(fontSize: 24, color: Colors.blue.shade800),
             ),
           ),
         ]
