@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/Pages/auth.dart';
 import 'package:noteapp/Pages/home.dart';
 import 'package:noteapp/Pages/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // double hight = MediaQuery.of(context).size.height;
@@ -35,6 +44,7 @@ class LoginPage extends StatelessWidget {
                 Column(
                   children: [
                     TextField(
+                      controller: _emailController,
                       autocorrect: false,
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -45,6 +55,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      controller: _passwordController,
                       autocorrect: false,
                       obscureText: true,
                       enableSuggestions: true,
@@ -61,8 +72,20 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 40),
             
                 ElevatedButton(
-                  onPressed: () {
-                    // Navigator.pushNamed(context, '/homepage');
+                  onPressed: () async {
+
+                    final message = await AuthService().login(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                );
+                if (message!.contains('Success')) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Homepage(),
+                    ),
+                  );
+                }
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Homepage()),

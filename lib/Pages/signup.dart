@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/Pages/auth.dart';
 import 'package:noteapp/Pages/home.dart';
 import 'package:noteapp/Pages/login.dart';
 
+class Signup extends StatefulWidget {
+  @override
+  State<Signup> createState() => _SignupState();
+}
 
-class Signup extends StatelessWidget {
+class _SignupState extends State<Signup> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // double hight = MediaQuery.of(context).size.height;
@@ -36,6 +44,7 @@ class Signup extends StatelessWidget {
                 Column(
                   children: [
                     TextField(
+                      controller: _usernameController,
                       autocorrect: false,
                       enableSuggestions: true,
                       decoration: InputDecoration(
@@ -47,6 +56,7 @@ class Signup extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      controller: _emailController,
                       autocorrect: false,
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -57,6 +67,7 @@ class Signup extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      controller: _passwordController,
                       autocorrect: false,
                       obscureText: true,
                       enableSuggestions: true,
@@ -69,16 +80,22 @@ class Signup extends StatelessWidget {
                     ),
                   ],
                 ),
-            
+
                 SizedBox(height: 40),
-            
+
                 ElevatedButton(
-                  onPressed: () {
-                    // Navigator.pushNamed(context, '/homepage');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Homepage()),
-                    );
+                  onPressed: () async {
+                    final message = await AuthService().registration(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                );
+
+                    if (message != null && message.contains('Success')) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homepage()),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,

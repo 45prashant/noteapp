@@ -38,7 +38,7 @@ class Homepage extends StatelessWidget {
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-      ),
+      ), floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ); 
   }
 }
