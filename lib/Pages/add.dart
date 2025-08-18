@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
+class Add extends StatefulWidget {
+  @override
+  _AddState createState() => _AddState();
+}
 
-class Add extends StatelessWidget{
+class _AddState extends State<Add> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +22,7 @@ class Add extends StatelessWidget{
         child: Column(
           children: [
             TextField(
+              controller: titleController,
               decoration: InputDecoration(
                 labelText: 'Title',
                 border: OutlineInputBorder(),
@@ -23,6 +31,7 @@ class Add extends StatelessWidget{
             ),
             SizedBox(height: 20),
             TextField(
+              controller: contentController,
               maxLines: null,
               decoration: InputDecoration(
                 labelText: 'Content',
@@ -33,7 +42,14 @@ class Add extends StatelessWidget{
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                // Logic to save the note
+                // Create note object
+                final note = {
+                  "title": titleController.text,
+                  "content": contentController.text,
+                };
+
+                // Send note back to Homepage
+                Navigator.pop(context, note);
               },
               child: Text("Save Note"),
               style: ElevatedButton.styleFrom(
@@ -42,8 +58,6 @@ class Add extends StatelessWidget{
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               ),
-              
-              
             ),
           ],
         ),

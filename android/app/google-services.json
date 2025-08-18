@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "233682760285",
+    "firebase_url": "https://noteapp-8c2b8-default-rtdb.firebaseio.com",
     "project_id": "noteapp-8c2b8",
     "storage_bucket": "noteapp-8c2b8.firebasestorage.app"
   },

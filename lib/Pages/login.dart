@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/Pages/auth.dart';
 import 'package:noteapp/Pages/home.dart';
 import 'package:noteapp/Pages/signup.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -86,10 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 }
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Homepage()),
-                    );
+              
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
